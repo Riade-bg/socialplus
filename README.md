@@ -31,6 +31,8 @@ Last Step open a new terminal tap and run the server
 > python manage.py runserver
 The project will be served on: localhost:8000
 
+- You can use alternative options depending on your OS(**Windoms**, **Linux** ..) as long it works.
+
 ## WARNING
 It is important to run the following commands above in order or the application may not work properly
 
