@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-5">
+            <div class="card card-register">
+                <div class="card-body">
+                    <form method="POST">
+                    {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="sign-up">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

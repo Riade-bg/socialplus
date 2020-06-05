@@ -1,0 +1,78 @@
+{% extends 'social/base.html' %} 
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body side-menu">
+                    <div class="list-element mb-4">
+                        <a href="{% url 'social:bookmark' %}">
+                            <i class="far fa-bookmark mr-1"></i>
+                            <span>Bookmarks</span>
+                        </a>
+                    </div>
+                    <div class="list-element mb-4">
+                        <a href="{% url 'profile' user.username %}">
+                            <i class="far fa-user-circle mr-1"></i>
+                            <span>Profile</span>
+                        </a>
+                    </div>
+                    <div class="list-element mb-4">
+                        <a href="{% url 'users:settings' %}">
+                            <i class="fas fa-sliders-h mr-1"></i>
+                            <span>Settings</span>
+                        </a>
+                    </div>
+                    <div class="list-element mb-4">
+                        <a href="{% url 'messenger' %}">
+                            <i class="far fa-comment mr-1"></i>
+                            <span>Messages</span>
+                        </a>
+                    </div>
+                    <div class="list-element">
+                        <a href="{% url 'users:logout' %}">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 post-container" style="height:700px; overflow-y:scroll;">
+            {% for post in Posts %}
+            <div class="card mb-3" style="padding:0;">
+                <div class="card-body" style="padding:0">
+                    <div class="post-info align-items-center">
+                        <div class="post-image-user">
+                            <img src="{{ post.user_name.profile.avatar.url }}" class="d-inline user-avatar">
+                        </div>
+                        <div class="info-wrapper">
+                            <a class="text-left d-inline align-top" href="{% url 'profile' post.user_name %}">{{post.user_name}}</a>
+                            <span class="align-bottom time">
+                            <i class="fas fa-clock"></i> {{post.get_date}}</span>
+                        </div>
+                        <div class="actions">
+                            {% if user.username|slugify == post.user_name|slugify %}
+                                <a data-url="{% url 'social:delete' post.id %}" data-toggle="tooltip" data-placement="bottom" title="Delete Post Permanently?"><i class="fas fa-trash-alt"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{{post.post_image.url}}">
+                        {% if user.username|slugify != post.user_name|slugify %}
+                            <i class="far fa-bookmark float-right bk" data-url={% url 'social:bookmark_create' %} data-id="{{post.id}}">
+                            </i>
+                        {% endif %}
+                    </div>
+                    <div class="reactions align-items-center" data-id="{{ post.id }}" data-href="{{ post.get_like_url }}">
+                        <i class="fas fa-heart mr-1"></i> 
+                        <span class="counter" data-id="{{ post.id }}" >{{ post.likes.count }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="blank" style="height:200px "></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'social/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-12 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center title">SOCIAL+</h2>
+                    <h6 class="text-center slug">Create New Account</h6>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <button class="btn-form" type="submit">Create My Account</button>
+                    </form>
+                    <hr>
+                    <h6 class="text-center slug"><a href="{% url 'users:home' %}" style="color:black; border-bottom:2px solid black">Or Login If You Have An Account</a></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

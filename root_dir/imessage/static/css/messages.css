@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;600&display=swap');
+div.msg-head {
+    padding: 12px;
+    font-family: 'Dosis';
+    font-weight: 600;
+    cursor: pointer;
+    transition: all ease-in-out 200ms;
+}
+
+div.msg-head:hover {
+    background: #eeeeee;
+    transition: all ease-in-out 200ms;
+}
+
+div.msg {
+    height: 480px;
+    overflow-x: scroll;
+}
+
+.card {
+    border-radius: 0px;
+}
+
+.users-card-body {
+    padding: 0;
+    height: 552px;
+    overflow-x: scroll;
+}
+
+div.msg::-webkit-scrollbar {
+    display: none;
+}
+
+div.msg-container-sender {
+    background: #3c5fcd;
+    width: 46%;
+    position: relative;
+    left: 50%;
+}
+
+div.msg-container-sender p {
+    color: white;
+    font-family: 'Dosis';
+    padding: 15px;
+}
+
+div.msg-container-reciever {
+    background: #c7c7c7;
+    width: 46%;
+    position: relative;
+}
+
+div.msg-container-reciever p {
+    color: black;
+    font-family: 'Dosis';
+    padding: 15px;
+}
+
+.card-body button {
+    background: transparent;
+    border: none;
+    color: #3c5fcd;
+    font-size: 20px;
+}
+
+.card-body button:focus {
+    outline: none;
+}
+
+.card-body input {
+    width: 90%;
+    border: 1px solid #c1c1c1;
+    transition: all ease-in-out 300ms;
+    padding-left: 7px;
+}
+
+.card-body input::placeholder {
+    font-family: 'Dosis';
+    font-weight: 300;
+    padding-left: 7px;
+    font-size: 17px;
+}
+
+.card-body input:focus {
+    color: #3c5fcd;
+    outline: none;
+    border: 1px solid #3c5fcd;
+    transition: all ease-in-out 300ms;
+}

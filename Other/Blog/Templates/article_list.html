@@ -1,0 +1,6 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Article List</h1>
+{% for i in object_list %}
+<p>{{ i.id }} -
+    <a href="{{ i.get_absolute_url }}">{{ i.title }}</a></p>
+{% endfor %} {% endblock %}

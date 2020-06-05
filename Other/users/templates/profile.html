@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card card-register">
+                <div class="card-body">
+                    <form method="POST">
+                    {% csrf_token %}
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+                        <button type="submit" class="sign-up">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Title</h1>
+                    <p>{% lorem 3 b random %}</p>
+                <div>
+            </div>
+        </div>
+    </div>
+</div>
+<h1>{{ user.image.profile }}</h1>
+{% endblock  %}

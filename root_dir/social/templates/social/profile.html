@@ -1,0 +1,46 @@
+{% extends 'social/base.html' %} 
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body profile">
+                        <img src="{{user_.avatar.url}}" class="mb-2">
+                        <p class="text-center">{{user_.user }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 post-container" style="height:700px; overflow-y:scroll;">
+            {% for post in Posts %}
+            <div class="card mb-3" style="padding:0;">
+                <div class="card-body" style="padding:0">
+                    <div class="post-info align-items-center">
+                        <div class="post-image-user">
+                            <img src="{{ post.user_name.profile.avatar.url }}" class="d-inline user-avatar">
+                        </div>
+                        <div class="info-wrapper">
+                            <a class="text-left d-inline align-top" href="{% url 'profile' post.user_name %}">{{post.user_name}}</a>
+                            <span class="align-bottom time">
+                            <i class="fas fa-clock"></i> {{post.get_date}}</span>
+                        </div>
+                        <div class="actions">
+                            {% if user.username|slugify == post.user_name|slugify %}
+                                <a data-url="{% url 'social:delete' post.id %}" data-toggle="tooltip" data-placement="bottom" title="Delete Post Permanently?"><i class="fas fa-trash-alt"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="{{post.post_image.url}}">
+                    </div>
+                    <div class="reactions align-items-center" data-id="{{ post.id }}" data-href="{{ post.get_like_url }}">
+                        <i class="fas fa-heart mr-1"></i> 
+                        <span class="counter" data-id="{{ post.id }}" >{{ post.likes.count }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="blank" style="height:200px "></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
