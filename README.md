@@ -1,2 +1,1 @@
-# socialplus
-Social+ is a social media web application like instagram. This app is powerd by django
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
