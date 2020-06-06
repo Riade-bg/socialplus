@@ -1,5 +1,5 @@
 {% extends 'imessage/base.html' %} {% block content %}
-<div class="container-fluid">
+{% comment %} <div class="container-fluid">
     <div class="row">
         <div class="col-4">
             <div class="card">
@@ -20,6 +20,40 @@
                     </div>
                     {{form}}
                     <button type="submit" class="send"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <input class="search-messages mb-2" type="text" placeholder="Search messages">
+                    {% for u in users_data %}
+                            <div class="msg-head mb-2 " data-id="{{ u.user }}" data-user="{{ user.username }}">
+                                <div class="user-profile mr-2 float-left">
+                                    <img src={{ u.avatar.url }} width="40px">
+                                </div>
+                                <div class="message-info" style="position: relative;top: -3px;">
+                                    <p class="align-middle">{{ u.user }}</p>
+                                    <p class="latest-message">{% lorem 1 b random %}</p>
+                                </div>
+                            </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="msg">
+                    </div>
+                </div>
+                <div class="message-form">
+                        {{form}}
+                        <button type="submit" class="send"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>

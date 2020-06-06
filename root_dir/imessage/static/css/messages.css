@@ -1,15 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;600&display=swap');
-div.msg-head {
-    padding: 12px;
-    font-family: 'Dosis';
+nav a.brand {
+    font-size: 23px;
+    font-family: Dosis;
     font-weight: 600;
+    color: black;
+    text-decoration: none;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+.card-body {
+    height: 520px;
+    overflow-x: scroll;
+}
+
+.card-body::-webkit-scrollbar {
+    display: none;
+}
+
+.user-profile img {
+    border-radius: 100%;
+}
+
+.message-info p {
+    font-family: Dosis;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.message-info p.latest-message {
+    font-family: Dosis;
+    font-weight: 300;
+    font-size: 15px;
+    color: #c7c7c7;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 85%;
+}
+
+div.msg-head {
+    padding: 10px;
     cursor: pointer;
-    transition: all ease-in-out 200ms;
 }
 
 div.msg-head:hover {
-    background: #eeeeee;
-    transition: all ease-in-out 200ms;
+    background: #f7f7f7;
 }
 
 div.msg {
@@ -19,6 +58,8 @@ div.msg {
 
 .card {
     border-radius: 0px;
+    border: none;
+    box-shadow: 0px 0px 44px -3px rgba(0, 0, 0, 0.09);
 }
 
 .users-card-body {
@@ -27,21 +68,27 @@ div.msg {
     overflow-x: scroll;
 }
 
+.users-card-body {
+    background: transparent;
+}
+
 div.msg::-webkit-scrollbar {
     display: none;
 }
 
 div.msg-container-sender {
-    background: #3c5fcd;
-    width: 46%;
+    background: #0084FF;
+    max-width: 46%;
+    display: inline-block;
     position: relative;
-    left: 50%;
+    left: 80%;
 }
 
 div.msg-container-sender p {
     color: white;
     font-family: 'Dosis';
-    padding: 15px;
+    padding: 10px 35px;
+    margin-bottom: 0;
 }
 
 div.msg-container-reciever {
@@ -56,18 +103,28 @@ div.msg-container-reciever p {
     padding: 15px;
 }
 
-.card-body button {
+.message-form {
+    position: absolute;
+    width: 100%;
+    top: 94.6%;
+}
+
+.message-form button {
     background: transparent;
     border: none;
     color: #3c5fcd;
-    font-size: 20px;
+    font-size: 15px;
+    position: absolute;
+    right: 2%;
+    top: 1px;
 }
 
-.card-body button:focus {
+.message-form button:focus {
     outline: none;
 }
 
-.card-body input {
+
+/* .card-body input {
     width: 90%;
     border: 1px solid #c1c1c1;
     transition: all ease-in-out 300ms;
@@ -82,6 +139,34 @@ div.msg-container-reciever p {
 }
 
 .card-body input:focus {
+    color: #3c5fcd;
+    outline: none;
+    border: 1px solid #3c5fcd;
+    transition: all ease-in-out 300ms;
+} */
+
+.search-messages,
+input.msg-input {
+    background: #f7f7f7;
+    border: 1px solid transparent;
+    padding-left: 7px;
+    width: 100%;
+    font-weight: 600;
+    font-family: 'Dosis';
+}
+
+.search-messages::placeholder,
+input.msg-input::placeholder {
+    font-family: 'Dosis';
+    font-weight: 300;
+    padding-left: 7px;
+    font-size: 14px;
+    position: relative;
+    top: -1px;
+}
+
+.search-messages:focus,
+input.msg-input:focus {
     color: #3c5fcd;
     outline: none;
     border: 1px solid #3c5fcd;
