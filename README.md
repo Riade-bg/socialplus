@@ -33,6 +33,19 @@ The project will be served on: localhost:8000
 
 - You can use alternative options depending on your OS(**Windoms**, **Linux** ..) as long it works.
 
+## Features
+- Real time notifications.
+- Real time chat system.
+- Create, delete, bookmark and like posts.
+- Create, update user information including username, email and profile picture.
+- Crop profile pictures(server side).
+- Website dynamic navigation.
+- Easy code structure.
+- Easy login, logout and register system.
+- Good level of security against hackers (sql injenctions, CSRF, XSS and more).
+- Powered by django framework.
+- No Front-end frameworks (like react or vuejs).
+
 ## WARNING
 It is important to run the following commands above in order or the application may not work properly
 
