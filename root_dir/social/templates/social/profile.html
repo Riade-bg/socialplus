@@ -1,12 +1,19 @@
-{% extends 'social/base.html' %} 
-{% block content %}
+{% extends 'social/base.html' %} {% load crispy_forms_tags %} {% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
             <div class="card">
                 <div class="card-body profile">
-                        <img src="{{user_.avatar.url}}" class="mb-2">
-                        <p class="text-center">{{user_.user }}</p>
+                    <img src="{{user_.avatar.url}}" class="mb-2">
+                    <p class="text-center">{{user_.user }}</p>
+                    {% if user_.user|slugify == user.username|slugify %}
+                    <form id="form" method="POST" action="{% url 'profile-change' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label for="id_avatar" class="input-update-profile">
+                                    <i class="fas fa-camera"></i> Update Profile Picture
+                                </label> {{form|crispy}}
+                    </form>
+                    <span class="profile-hint">(Image must be at least 500 x 500)</span> {% endif %}
                 </div>
             </div>
         </div>
@@ -25,16 +32,15 @@
                         </div>
                         <div class="actions">
                             {% if user.username|slugify == post.user_name|slugify %}
-                                <a data-url="{% url 'social:delete' post.id %}" data-toggle="tooltip" data-placement="bottom" title="Delete Post Permanently?"><i class="fas fa-trash-alt"></i></a>
-                            {% endif %}
+                            <a data-url="{% url 'social:delete' post.id %}" data-toggle="tooltip" data-placement="bottom" title="Delete Post Permanently?"><i class="fas fa-trash-alt"></i></a> {% endif %}
                         </div>
                     </div>
                     <div class="post">
                         <img src="{{post.post_image.url}}">
                     </div>
                     <div class="reactions align-items-center" data-id="{{ post.id }}" data-href="{{ post.get_like_url }}">
-                        <i class="fas fa-heart mr-1"></i> 
-                        <span class="counter" data-id="{{ post.id }}" >{{ post.likes.count }}</span>
+                        <i class="fas fa-heart mr-1"></i>
+                        <span class="counter" data-id="{{ post.id }}">{{ post.likes.count }}</span>
                     </div>
                 </div>
             </div>

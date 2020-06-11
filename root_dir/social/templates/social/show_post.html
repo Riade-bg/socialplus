@@ -1,4 +1,5 @@
-{% extends 'social/base.html' %} {% block content %}
+{% extends 'social/base.html' %}
+{% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="overlay"></div>
@@ -85,47 +86,36 @@
                 </div>
             </div>
         </div>
-        {% if bookmarks %} {% for bookmark in bookmarks %}
         <div class="col-lg-6 col-md-6 col-12 post-container" style="height:700px; overflow-y:scroll;">
             <div class="card mb-3" style="padding:0;">
                 <div class="card-body" style="padding:0">
                     <div class="post-info align-items-center">
                         <div class="post-image-user">
-                            <img src="{{ bookmark.bookmark.user_name.profile.avatar.url }}" class="d-inline user-avatar">
+                            <img src="{{ post.user_name.profile.avatar.url }}" class="d-inline">
                         </div>
                         <div class="info-wrapper">
-                            <h6 class="text-left d-inline align-top">{{bookmark.bookmark.user_name}}</h6>
+                            <a class="text-left d-inline align-top" href="{% url 'profile' post.user_name %}">{{post.user_name}}</a>
                             <span class="align-bottom time">
-                            <i class="fas fa-clock"></i> {{bookmark.bookmark.get_date}}</span>
+                            <i class="fas fa-clock"></i> {{post.get_date}}</span>
+                        </div>
+                        <div class="actions">
+                            {% if user.username|slugify == post.user_name|slugify %}
+                            <a data-url="{% url 'social:delete' post.id %}" data-toggle="tooltip" data-placement="bottom" title="Delete Post Permanently?"><i class="fas fa-trash-alt"></i></a> {% endif %}
                         </div>
                     </div>
                     <div class="post">
-                        <img src="{{bookmark.bookmark.post_image.url}}">
-                        <i class="far fa-bookmark float-right bk" data-url={% url 'social:bookmark_create' %} data-id="{{bookmark.bookmark.id}}">
-                        </i>
+                        <img src="{{post.post_image.url}}" width="100%"> {% if user.username|slugify != post.user_name|slugify %}
+                        <i class="far fa-bookmark float-right bk" data-url={% url 'social:bookmark_create' %} data-id="{{post.id}}">
+                            </i> {% endif %}
                     </div>
-                    <div class="reactions align-items-center" data-id="{{ bookmark.bookmark.id }}" data-href="{{ bookmark.bookmark.get_like_url }}">
+                    <div class="reactions align-items-center" data-id="{{ post.id }}" data-href="{{ post.get_like_url }}">
                         <i class="fas fa-heart mr-1"></i>
-                        <span class="counter" data-id="{{ bookmark.bookmark.id }}">{{ bookmark.bookmark.likes.count }}</span>
+                        <span class="counter" data-id="{{ post.id }}">{{ post.likes.count }}</span>
                     </div>
                 </div>
             </div>
+            <div class="blank" style="height:200px "></div>
         </div>
-        {% endfor %} {% else %}
-        <div class="col-lg-6 col-md-6 col-12 post-container">
-            <div class="card mb-3" style="padding:0;">
-                <div class="card" style="padding:0">
-                    <div class="card-body">
-                        <p class="text-center" style="font-family: Dosis;margin-bottom: 0;font-size: 25px;">
-                            {{ bk }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endif %}
-        <div class="blank" style="height:200px "></div>
     </div>
 </div>
-</div>
-{% endblock %}
+{% endblock  %}

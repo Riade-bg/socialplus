@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap');
 body {
-    background: #ebedee;
+    background: #f5f5f5;
     height: 600px;
 }
 
@@ -17,6 +17,7 @@ a.brand {
     font-family: 'El Messiri', sans-serif;
     font-size: 25px;
     padding-top: 5px;
+    width: 33%;
     text-decoration: none;
     color: #ff828e;
 }
@@ -81,6 +82,15 @@ a.brand {
 
 /* Navbar Styles */
 
+nav.navbar {
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+button.navbar-toggler:focus {
+    outline: none;
+}
+
 .right-nav i {
     font-size: 22px;
     color: #dadada;
@@ -89,14 +99,15 @@ a.brand {
 }
 
 .right-nav img {
-    width: 40px;
+    width: 30px;
     border-radius: 100%;
 }
 
 .right-nav button {
-    background: #ff828e;
+    background: #86beff;
     border: none;
-    border-radius: 18px;
+    border-radius: 30px;
+    padding: 0px 6px;
 }
 
 .right-nav button a {
@@ -113,7 +124,8 @@ a.brand {
 }
 
 .middle-nav input {
-    border: 2px solid #f1f1f1;
+    border: 1px solid transparent;
+    background: #f1f1f1;
     font-family: 'Dosis';
     padding: 3px 10px;
     width: 100%;
@@ -122,32 +134,38 @@ a.brand {
 
 .middle-nav input::placeholder {
     font-family: 'Dosis';
+    font-size: 15px;
 }
 
 .middle-nav input:focus {
     outline: none;
-    border: 2px solid #ff5c6c;
+    border: 1px solid #ff5b6b;
     transition: all ease-in-out 100ms;
 }
 
 div.search i {
     position: absolute;
-    top: 20px;
-    right: 35.5%;
+    top: 33%;
+    right: 27%;
     color: #bbbbbb;
     display: none;
 }
 
 div.search-results {
-    width: 32%;
-    height: auto;
+    width: 48.8%;
+    max-height: 400px;
     max-height: 500px;
     position: absolute;
     display: none;
     top: 100%;
+    overflow-y: scroll;
     z-index: 3;
     background: white;
     border: 1px solid #dadada;
+}
+
+div.search-results::-webkit-scrollbar {
+    display: none;
 }
 
 .container-search {
@@ -173,6 +191,79 @@ div.search-results {
 
 .search-results h6 {
     font-family: 'Dosis', sans-serif;
+}
+
+button.menu-toggler {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    button.menu-toggler {
+        display: block;
+    }
+    .right-nav img,
+    .right-nav button {
+        display: none;
+    }
+}
+
+.overlay {
+    background: black;
+    position: absolute;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 2;
+    height: 100vh;
+    opacity: 0.6;
+}
+
+div.side-menu-responsive {
+    background: white;
+    display: none;
+    width: 250px;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+}
+
+div.menu-header {
+    padding: 15px 0px 10px 17px;
+    width: 233px;
+}
+
+div.menu-header img {
+    border-radius: 100%;
+}
+
+div.menu-header p {
+    margin-bottom: 0;
+}
+
+div.menu-header span {
+    color: #cacaca;
+    font-family: Dosis;
+}
+
+div.side-menu-responsive .list-element {
+    padding: 15px;
+    padding-left: 25px;
+    font-family: Dosis;
+    font-size: 17px;
+    width: 250px;
+    cursor: pointer;
+}
+
+div.side-menu-responsive .list-element:hover {
+    background: #e6e6e6;
+}
+
+div.side-menu-responsive a {
+    color: #717171;
+    text-decoration: none;
 }
 
 
@@ -261,7 +352,7 @@ div.notification-container span {
 
 .post-info div.post-image-user {
     float: left;
-    width: 9%;
+    width: auto;
     padding-bottom: 7px;
 }
 
@@ -269,7 +360,6 @@ div.notification-container span {
     top: 0px;
     left: 0px;
     width: 45px;
-    height: 45px;
     border-radius: 100%;
 }
 
@@ -286,7 +376,7 @@ div.info-wrapper {
     display: inline-grid;
     position: relative;
     left: 8px;
-    width: 25%;
+    width: auto;
 }
 
 div.info-wrapper a {
@@ -405,6 +495,7 @@ button.submit-btn {
 
 div.side-menu {
     background: white;
+    padding: 15px 5px 15px 5px
 }
 
 div.side-menu a {
@@ -443,8 +534,49 @@ div.side-menu .list-element span.badge {
 
 /* Profile */
 
+div.upload-crop-container {
+    position: absolute;
+    z-index: 3;
+}
+
+.profile-update-input {
+    display: none;
+}
+
+span.profile-hint {
+    font-family: Dosis;
+    font-size: 15px;
+    position: relative;
+    top: -18px;
+    left: 8%;
+    background: #e6e6e6;
+}
+
+.input-update-profile {
+    font-family: Dosis;
+    background: #5479ff;
+    padding: 5px 14px;
+    color: white;
+    position: relative;
+    left: 13%;
+    cursor: pointer;
+}
+
+div.modal-content {
+    border: none;
+    border-radius: 0px;
+}
+
 div.profile {
     word-wrap: break-word;
+}
+
+div.profile .errorlist {
+    list-style: none;
+    font-family: Dosis;
+    color: red;
+    left: 6%;
+    position: relative;
 }
 
 div.profile img {
@@ -463,3 +595,45 @@ div.profile p {
 
 
 /* End Profile */
+
+form.post-form {
+    width: 100%;
+    height: 100%;
+}
+
+.dropzone {
+    border: 8px dashed #e6f5e9;
+    width: 100%;
+    height: 100%;
+    transition: all ease-in-out 300ms;
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.clear-files {
+    position: absolute;
+    top: 45%;
+    left: 65%;
+    font-family: Dosis;
+    font-weight: 600;
+    color: white;
+    background: #ff0383;
+    padding: 1px 10px;
+    border-radius: 21px;
+    cursor: pointer;
+    display: none;
+}
+
+label.file-upload {
+    font-family: Dosis;
+    font-weight: 600;
+    height: 37px;
+    font-size: 20px;
+    position: relative;
+    top: 50%;
+    background: #e6f5e9;
+    padding: 2px 20px;
+    border-radius: 21px;
+}

@@ -42,13 +42,6 @@ class UserRegestraionForm(UserCreationForm):
         for index in fields:
             self.fields[index].widget.attrs['class'] = 'input-form'
             self.fields[index].label = False
-        # self.fields['username'].widget.attrs['class'] = 'input-form'
-        # self.fields['password1'].widget.attrs['class'] = 'input-form'
-        # self.fields['password2'].widget.attrs['class'] = 'input-form'
-
-        # self.fields['username'].label = False
-        # self.fields['password1'].label = False
-        # self.fields['password2'].label = False
 
 
 

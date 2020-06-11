@@ -1,11 +1,12 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from social.views import profile
+from social.views import profile, profileChange
 from imessage.views import messanger_home, messanger_create, messanger_show
 urlpatterns = [
     path('', include('users.urls')),
     path('profile/<str:slug>/', profile, name="profile"),
+    path('profileChange/', profileChange, name="profile-change"),
     path('imessage/', messanger_home, name="messenger"),
     path('send_imessage/', messanger_create, name="messanger_create"),
     path('chat/', messanger_show, name="messanger_create"),

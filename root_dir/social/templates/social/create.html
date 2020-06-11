@@ -1,13 +1,27 @@
 {% extends 'social/base.html' %} {% load crispy_forms_tags %} {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-12">
+    <div class="row row-bt justify-content-center">
+        <div class="col-lg-6 col-12">
             <div class="card upload-card">
                 <div class="card-body" style="padding: 0;">
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %} {{form|crispy}}
-                        <button type="submit" class="submit-btn">Post</button> </div>
-                </form>
+                    <form method="POST" class="post-form" enctype="multipart/form-data">
+                        <div class="dropzone d-flex justify-content-center">
+                            {% csrf_token %}
+                            <label class="file-upload" for="file-upload-input">
+                                Drag Your File Here Or Click To Upload
+                            </label>
+                            {{form|crispy}}
+                            <span class="clear-files">
+                                <i class="fas fa-times"></i>
+                                Clear Files
+                            </span>
+                            <button class="clear-files" type="submit" style="left:43%;background:#007ac1;border:none">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                Post Image
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

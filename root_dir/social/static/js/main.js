@@ -1,7 +1,10 @@
     var search_term
     var csrftoken = Cookies.get('csrftoken');
     var webSocketBridge
+
     $(document).ready(function() {
+
+
         webSocketBridge = new channels.WebSocketBridge();
         webSocketBridge.connect('/notify/');
         webSocketBridge.listen(function(action, stream) {
@@ -14,11 +17,55 @@
             }
         })
 
-
+        $('.profile-update-input').change(function() {
+            $('#form').submit()
+        })
+        $("html, body").animate({ scrollTop: 0 }, function() {
+            $('body').css({ 'overflow': 'hidden' })
+        });
+        $('.dropzone').on({
+            dragover: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $(this).css({
+                    "background": "#e6f5e9",
+                    "transition": "all ease-in-out 300ms"
+                })
+                console.log($('input[type=file]').val())
+                return false;
+            },
+            dragleave: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $(this).css({
+                    "background": "transparent"
+                })
+                console.log($('input[type=file]').val())
+                return false;
+            },
+            drop: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                var file = e.originalEvent.dataTransfer.files;
+                $("input.file-upload-input").prop("files", e.originalEvent.dataTransfer.files);
+                $('label.file-upload').text(file[0]['name'])
+                $('.clear-files').css({
+                    "display": "block"
+                }).click(function(e) {
+                    $('label.file-upload').text("Drag Your File Here Or Click To Upload")
+                    $(".dropzone").css({
+                        "background": "transparent"
+                    })
+                    $(this).css({
+                        "display": "none"
+                    })
+                })
+            }
+        })
         $('.q').val('')
         $('[data-toggle="tooltip"]').tooltip()
         $('.notification-container').click(function() {
-            // window.open($(this).attr("href"), '_blank');
+            window.open($(this).attr("href"), '_blank');
             console.log($(this).attr("href"))
         });
         $('.reactions').click(function(e) {
@@ -48,6 +95,16 @@
             })
             $(this).css({
                 'display': "none",
+            })
+        })
+        $('.menu-toggler').click(function() {
+            $('div.overlay').fadeToggle(200, function() {
+                $('div.side-menu-responsive').toggle(200)
+            })
+        })
+        $('.overlay').click(function() {
+            $('div.side-menu-responsive').toggle(200, function() {
+                $('div.overlay').fadeToggle(200)
             })
         })
         $('.q').keyup(function(e) {

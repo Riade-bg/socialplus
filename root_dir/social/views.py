@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .forms import PostCreateForm
+from .forms import PostCreateForm, ProfilePictureUpdate
 from django.contrib import messages
 from django.views.generic import RedirectView
 from django.contrib.auth.models import User
@@ -137,11 +137,23 @@ def create_bookmark(request):
 def profile(request, slug):
     posts = PostCreate.objects.filter(user_name__username__exact = slug).order_by('-date')
     user_ =  Profile.objects.get(user__username = slug)
+    p_form = ProfilePictureUpdate()
     contex = {
         'Posts':posts,
-        'user_':user_
+        'user_':user_,
+        'form':p_form
     }
     return render(request, 'social/profile.html', contex)
+
+def profileChange(request):
+    if request.method == "POST":
+        p_form = ProfilePictureUpdate(request.POST, request.FILES, instance=request.user.profile)
+        if p_form.is_valid():
+            p_form.save()
+            return redirect('/')
+        else:
+            return redirect('/')
+    return redirect('/')
 
 @login_required
 def SearchAPI(request):
@@ -159,3 +171,11 @@ def SearchAPI(request):
 
 
 
+def show_post(request, pk):
+    post = PostCreate.objects.get(id = pk)
+    notification = Notifications.objects.get(post__id = pk)
+    notification.delete()
+    contex = {
+        'post':post
+    }
+    return render(request, 'social/show_post.html', contex)
