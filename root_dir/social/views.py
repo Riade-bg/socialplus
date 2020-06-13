@@ -76,11 +76,10 @@ def Like(request):
 
 @login_required
 def bookmark(request):
-    bk = Bookmark.objects.all()
-    if bk.exists():
-        bookmark = Bookmark.objects.filter(user = request.user)
+    bk = Bookmark.objects.filter(user__username = request.user)
+    if bk.count() > 0:
         contex = {
-            'bookmarks':bookmark
+            'bookmarks':bk
         }
     else:
         contex = {
@@ -97,8 +96,8 @@ def create_bookmark(request):
     delete = False
     created = False
     if bk.exists():
-        bookmarks = Bookmark.objects.get(bookmark = post)
-        if bookmarks:
+        bookmarks = Bookmark.objects.filter(bookmark__id = post.id)
+        if bookmarks.count() > 0:
             bookmarks.delete()
             delete = True
             created = False

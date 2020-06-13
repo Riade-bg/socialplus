@@ -5,13 +5,17 @@ var socket = new WebSocket(endpoint)
 var webSocketBridge
 $(document).ready(function() {
     socket.onmessage = function(e) {
-        $('div.msg').append(e.data)
+        if ($('div.msg-head').attr('data-id') == e.data.split("//")[3]) {
+            $('div.card div.msg').append(e.data.split("//")[1])
+            $("div.msg").scrollTop($("div.msg")[0].scrollHeight)
+        }
     }
     socket.onopen = function(e) {}
     socket.onerror = function(e) {}
     socket.onclose = function(e) {}
     getMsges($('.msg-head'))
     $('div.msg-head').click(function(e) {
+        $("div.container-msges-contacts").children().removeAttr("style")
         getMsges($(this))
     })
     $('div.uper-msg-head').click(function(e) {
@@ -80,7 +84,12 @@ function getMsges(this_) {
         success: function(result) {
             $('.msg-input').val('')
             $('.msg').empty()
-            $('.msg').prepend(result)
+            $('.msg').prepend(result['html'])
+            if ($(this_).attr('data-id') == result['user']) {
+                $(this_).first().css({
+                    "background": "#f5f5f5"
+                })
+            }
             $("div.msg").scrollTop($("div.msg")[0].scrollHeight)
         }
     })

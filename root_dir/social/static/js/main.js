@@ -62,7 +62,7 @@
         $('.q').val('')
         $('[data-toggle="tooltip"]').tooltip()
         $('.notification-container').click(function() {
-            window.open($(this).attr("href"), '_blank');
+            window.open($(this).attr("href"));
         });
         $('.reactions').click(function(e) {
             e.preventDefault()

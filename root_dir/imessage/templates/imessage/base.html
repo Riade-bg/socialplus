@@ -12,7 +12,8 @@
   {% if user.is_authenticated %}
     <nav class="navbar navbar-light navbar-expand-md justify-content-center mb-3" style="background:white">
     <div class="container-fluid">
-      <a href="{% url 'social:home' %}" class="brand d-flex w-50 mr-auto">Social+ <span class="mr-2 ml-2" style="font-size:25px">/</span> Imessage </a>
+      <a href="{% url 'social:home' %}" class="brand d-flex w-100 mr-auto">Social+ <span class="mr-2 ml-2" style="font-size:25px">/</span> Imessage </a>
+      <img src={{user.profile.avatar.url}} width="35px" class="mr-2 profile" style="border-radius: 100%;">
       <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
       </div>
       </div>

@@ -9,10 +9,10 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
 
-        img = Image.open(self.avatar.path)
+        img = Image.open(self.avatar.path).convert('RGB')
         if img.width > 500 or img.height > 500:
             img.thumbnail((500, 500))
 

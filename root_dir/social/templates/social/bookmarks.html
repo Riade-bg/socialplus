@@ -85,8 +85,9 @@
                 </div>
             </div>
         </div>
-        {% if bookmarks %} {% for bookmark in bookmarks %}
+        {% if bookmarks %}
         <div class="col-lg-6 col-md-6 col-12 post-container" style="height:700px; overflow-y:scroll;">
+        {% for bookmark in bookmarks %}
             <div class="card mb-3" style="padding:0;">
                 <div class="card-body" style="padding:0">
                     <div class="post-info align-items-center">
@@ -110,8 +111,9 @@
                     </div>
                 </div>
             </div>
+            {% endfor %} 
         </div>
-        {% endfor %} {% else %}
+        {% else %}
         <div class="col-lg-6 col-md-6 col-12 post-container">
             <div class="card mb-3" style="padding:0;">
                 <div class="card" style="padding:0">

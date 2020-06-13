@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
+from django.core import serializers
 from django.contrib.auth.models import User
 from django.utils import timezone
 from users.models import Profile
@@ -44,7 +45,7 @@ def messanger_create(request):
             message = message,
             date = timezone.now()
         )
-        event_triger(reciever, message)
+        event_triger(reciever, message, request.user.id)
         msg = imessage.objects.values().filter(reciever__id = reciever, sender__username = request.user).order_by('-date')[:1]
         html.append("<div class='container-message d-flex justify-content-end float-right'>\
                         <p class='text-right mr-3 align-self-center'>"+ msg[0]['message'] +"</p>\
@@ -74,18 +75,22 @@ def messanger_show(request):
                             </div>")
     else:
         html = "ERROR"
-    return HttpResponse(html)
+    return JsonResponse({
+        "html":html,
+        "user":str(reciever_)
+    })
 
 
 
 
-def event_triger(user, message):
-    send_msg = "<div class='msg-container-reciever mb-2'><p class='text-left'>" + message + "</p></div>"
+def event_triger(user, message, loged_in_user):
+    send_msg = "<div class='container-message float-left'><p class='text-left reciever ml-3'>"+ message +"</p></div>"
     channel_layer = get_channel_layer()
     async_to_sync(channel_layer.group_send)(
         str(user)+'_room',
         {
             'type': 'send_message_to_frontend',
-            'message': send_msg
+            'message': send_msg,
+            'id':str(loged_in_user)
         }
     )
