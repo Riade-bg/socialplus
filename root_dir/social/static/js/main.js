@@ -8,7 +8,6 @@
         webSocketBridge = new channels.WebSocketBridge();
         webSocketBridge.connect('/notify/');
         webSocketBridge.listen(function(action, stream) {
-            console.log("Response", action.username_who_like);
             if (action.event == "New Like") {
                 $('.fa-dot-circle').css({
                     "display": "block"
@@ -31,7 +30,6 @@
                     "background": "#e6f5e9",
                     "transition": "all ease-in-out 300ms"
                 })
-                console.log($('input[type=file]').val())
                 return false;
             },
             dragleave: function(e) {
@@ -40,7 +38,6 @@
                 $(this).css({
                     "background": "transparent"
                 })
-                console.log($('input[type=file]').val())
                 return false;
             },
             drop: function(e) {
@@ -66,7 +63,6 @@
         $('[data-toggle="tooltip"]').tooltip()
         $('.notification-container').click(function() {
             window.open($(this).attr("href"), '_blank');
-            console.log($(this).attr("href"))
         });
         $('.reactions').click(function(e) {
             e.preventDefault()
@@ -131,7 +127,6 @@
 
     function getData() {
         function csrfSafeMethod(method) {
-            // these HTTP methods do not require CSRF protection
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
         $.ajaxSetup({
@@ -156,7 +151,6 @@
 
     function getLike(this_, likeUrl, id) {
         function csrfSafeMethod(method) {
-            // these HTTP methods do not require CSRF protection
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
         $.ajaxSetup({
@@ -191,7 +185,6 @@
 
     function bookmark(this_, url, id) {
         function csrfSafeMethod(method) {
-            // these HTTP methods do not require CSRF protection
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
         $.ajaxSetup({
@@ -208,11 +201,14 @@
                 "id": id
             },
             success: function(result) {
-                console.log(window.location.pathname)
                 if (window.location.pathname == "/home/bookmarks/") {
                     location.reload();
                 }
-                $('.side-menu').prepend(result)
+                $('.container-home').prepend(result)
+                $(".alert-success").fadeTo(2000, 500).slideUp(500, function() {
+                    $(".alert-success").slideUp(500);
+                    $('button.close').click()
+                });
             }
         })
     }
