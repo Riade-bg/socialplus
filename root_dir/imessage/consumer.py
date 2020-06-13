@@ -3,7 +3,6 @@ import asyncio
 from asgiref.sync import async_to_sync
 from django.contrib.auth import get_user_model
 from channels.generic.websocket import WebsocketConsumer
-# from .views import messages_helper
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self):

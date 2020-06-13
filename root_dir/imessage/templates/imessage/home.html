@@ -1,59 +1,48 @@
 {% extends 'imessage/base.html' %} {% block content %}
-{% comment %} <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body users-card-body">
+        <div class="col-12 d-block d-md-none">
+            <div class="card uper-users-panel">
+                <div class="card-body d-flex" style="padding:13px">
                     {% for u in users_data %}
-                            <div class="msg-head mb-2 d-flex" data-id="{{ u.user }}" data-user="{{ user.username }}">
-                                <img src={{ u.avatar.url }} width="35px">
-                                <p class="ml-2 align-middle">{{ u.user }}</p>
-                            </div>
+                    <div class="uper-msg-head" data-id="{{ u.user.id }}" data-user="{{ user.id }}">
+                        <img src={{ u.avatar.url }} class="mr-4">
+                    </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-lg-4 col-md-4 d-none d-md-block">
             <div class="card">
                 <div class="card-body">
-                    <div class="msg">
-                    </div>
-                    {{form}}
-                    <button type="submit" class="send"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> {% endcomment %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <input class="search-messages mb-2" type="text" placeholder="Search messages">
+                    <div class="container-msges-contacts">
                     {% for u in users_data %}
-                            <div class="msg-head mb-2 " data-id="{{ u.user }}" data-user="{{ user.username }}">
+                            <div class="msg-head mb-2 " data-id="{{ u.user.id }}" data-user="{{ user.id }}">
                                 <div class="user-profile mr-2 float-left">
                                     <img src={{ u.avatar.url }} width="40px">
                                 </div>
                                 <div class="message-info" style="position: relative;top: -3px;">
                                     <p class="align-middle">{{ u.user }}</p>
-                                    <p class="latest-message">{% lorem 1 b random %}</p>
+                                    {% load filter %}
+                                    {% if last_messages|hash:u.user.id != None %}
+                                        <p class="latest-message">{{ last_messages|hash:u.user.id }}</p>
+                                    {% else %}
+                                        <p class="latest-message">No Recent Messages Yet</p>
+                                    {% endif %}
                                 </div>
                             </div>
                     {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-lg-8 col-md-8 col-12">
             <div class="card">
-                <div class="card-body">
-                    <div class="msg">
-                    </div>
+                <div class="msg">
                 </div>
                 <div class="message-form">
-                        {{form}}
-                        <button type="submit" class="send"><i class="fas fa-paper-plane"></i></button>
+                    {{form}}
+                    <button type="submit" class="send"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>

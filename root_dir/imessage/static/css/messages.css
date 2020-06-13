@@ -39,7 +39,7 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 85%;
+    width: auto;
 }
 
 div.msg-head {
@@ -52,7 +52,7 @@ div.msg-head:hover {
 }
 
 div.msg {
-    height: 480px;
+    height: 87vh;
     overflow-x: scroll;
 }
 
@@ -76,31 +76,29 @@ div.msg::-webkit-scrollbar {
     display: none;
 }
 
-div.msg-container-sender {
-    background: #0084FF;
-    max-width: 46%;
+.container-message {
+    width: 51%;
+}
+
+.container-message {
+    padding: 13px;
+    clear: both;
+}
+
+.container-message p {
+    width: auto;
     display: inline-block;
-    position: relative;
-    left: 80%;
-}
-
-div.msg-container-sender p {
+    background: #3c5fcd;
+    padding: 7px 20px;
+    border-radius: 25px;
+    margin: 0;
     color: white;
-    font-family: 'Dosis';
-    padding: 10px 35px;
-    margin-bottom: 0;
+    font-family: Dosis;
 }
 
-div.msg-container-reciever {
+p.reciever {
     background: #c7c7c7;
-    width: 46%;
-    position: relative;
-}
-
-div.msg-container-reciever p {
     color: black;
-    font-family: 'Dosis';
-    padding: 15px;
 }
 
 .message-form {
@@ -122,28 +120,6 @@ div.msg-container-reciever p {
 .message-form button:focus {
     outline: none;
 }
-
-
-/* .card-body input {
-    width: 90%;
-    border: 1px solid #c1c1c1;
-    transition: all ease-in-out 300ms;
-    padding-left: 7px;
-}
-
-.card-body input::placeholder {
-    font-family: 'Dosis';
-    font-weight: 300;
-    padding-left: 7px;
-    font-size: 17px;
-}
-
-.card-body input:focus {
-    color: #3c5fcd;
-    outline: none;
-    border: 1px solid #3c5fcd;
-    transition: all ease-in-out 300ms;
-} */
 
 .search-messages,
 input.msg-input {
@@ -171,4 +147,15 @@ input.msg-input:focus {
     outline: none;
     border: 1px solid #3c5fcd;
     transition: all ease-in-out 300ms;
+}
+
+.uper-users-panel {
+    height: 85px;
+    margin-bottom: 10px;
+}
+
+.uper-msg-head img {
+    border-radius: 100%;
+    cursor: pointer;
+    width: 61px;
 }

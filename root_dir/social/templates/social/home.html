@@ -1,5 +1,5 @@
 {% extends 'social/base.html' %} {% block content %}
-<div class="container-fluid">
+<div class="container-fluid container-home">
     <div class="row">
         <div class="overlay"></div>
         <div class="side-menu-responsive h-100">
@@ -7,7 +7,7 @@
                 <div class="float-left">
                     <img src={{ user.profile.avatar.url }} class="mr-2" width="50px">
                 </div>
-                <div>
+                <div class="info">
                     <p>{{user.username}}</p>
                     <span>{{user.email}}</span>
                 </div>

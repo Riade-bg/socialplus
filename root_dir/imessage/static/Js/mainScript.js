@@ -4,22 +4,17 @@ var endpoint = 'ws://' + window.location.host + '/chat/'
 var socket = new WebSocket(endpoint)
 var webSocketBridge
 $(document).ready(function() {
-
     socket.onmessage = function(e) {
         $('div.msg').append(e.data)
     }
-    socket.onopen = function(e) {
-        console.log("open", e)
-    }
-    socket.onerror = function(e) {
-        console.log("error", e)
-    }
-    socket.onclose = function(e) {
-        console.log("close", e)
-    }
+    socket.onopen = function(e) {}
+    socket.onerror = function(e) {}
+    socket.onclose = function(e) {}
     getMsges($('.msg-head'))
-
-    $('.msg-head').click(function(e) {
+    $('div.msg-head').click(function(e) {
+        getMsges($(this))
+    })
+    $('div.uper-msg-head').click(function(e) {
         getMsges($(this))
     })
     $('.send').click(function(e) {
@@ -53,7 +48,6 @@ function sendMsg(reciever, text) {
                 $('.msg-input').css({
                     'border': "1px solid red"
                 })
-                $('.msg').append('<span style="position: absolute;top: 96%;font-family:Dosis;color:red;font-size: 13px;">' + result.Error + '</span>')
             } else {
                 $('.msg').append(result)
                 $("div.msg").scrollTop($("div.msg")[0].scrollHeight)

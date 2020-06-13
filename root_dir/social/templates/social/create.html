@@ -1,7 +1,55 @@
 {% extends 'social/base.html' %} {% load crispy_forms_tags %} {% block content %}
-<div class="container">
-    <div class="row row-bt justify-content-center">
-        <div class="col-lg-6 col-12">
+<div class="container-fluid container-home">
+    <div class="row">
+        <div class="overlay"></div>
+        <div class="side-menu-responsive h-100">
+            <div class="menu-header mb-2">
+                <div class="float-left">
+                    <img src={{ user.profile.avatar.url }} class="mr-2" width="50px">
+                </div>
+                <div class="info">
+                    <p>{{user.username}}</p>
+                    <span>{{user.email}}</span>
+                </div>
+            </div>
+            <div class="list-element">
+                <a href="{% url 'social:create' %}">
+                    <i class="fas fa-plus mr-2"></i>
+                    <span>Create Post</span>
+                </a>
+            </div>
+            <div class="list-element">
+                <a href="{% url 'social:bookmark' %}">
+                    <i class="far fa-bookmark mr-2"></i>
+                    <span>Bookmarks</span>
+                </a>
+            </div>
+            <div class="list-element">
+                <a href="{% url 'profile' user.username %}">
+                    <i class="far fa-user-circle mr-2"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+            <div class="list-element">
+                <a href="{% url 'users:settings' %}">
+                    <i class="fas fa-sliders-h mr-2"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="list-element">
+                <a href="{% url 'messenger' %}">
+                    <i class="far fa-comment mr-2"></i>
+                    <span>Messages</span>
+                </a>
+            </div>
+            <div class="list-element">
+                <a href="{% url 'users:logout' %}">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
             <div class="card upload-card">
                 <div class="card-body" style="padding: 0;">
                     <form method="POST" class="post-form" enctype="multipart/form-data">

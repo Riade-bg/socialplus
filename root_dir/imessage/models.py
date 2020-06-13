@@ -15,7 +15,3 @@ class imessage (models.Model):
 
     def __str__(self):
         return f'{self.reciever} Message'
-
-    # def get_absolute_url(self):
-    #     return reverse("imessage _detail", kwargs={"pk": self.pk})
-

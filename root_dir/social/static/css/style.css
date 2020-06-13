@@ -152,7 +152,8 @@ div.search i {
 }
 
 div.search-results {
-    width: 48.8%;
+    width: 50%;
+    left: 25%;
     max-height: 400px;
     max-height: 500px;
     position: absolute;
@@ -217,7 +218,7 @@ button.menu-toggler {
     right: 0;
     width: 100%;
     z-index: 2;
-    height: 100vh;
+    height: 100%;
     opacity: 0.6;
 }
 
@@ -232,7 +233,10 @@ div.side-menu-responsive {
 
 div.menu-header {
     padding: 15px 0px 10px 17px;
-    width: 233px;
+}
+
+div.menu-header div.info {
+    width: 176px
 }
 
 div.menu-header img {
