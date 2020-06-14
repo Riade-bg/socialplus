@@ -22,8 +22,8 @@ def new_like(sender, instance, created, **kwargs):
                         "username_who_like": str(obj.user_who_like),
                         "post_username": str(obj.post_username),
                         "post_id" : str(obj.post.id),
-                        "html":"<div class='notification-container' href='"+str(obj.user_who_like)+"'>\
-                                    <img src='"+str(obj.user_who_like.profile.avatar.url)+"' class='float-left'>\
+                        "html":"<div class='notification-container' href='post/"+str(obj.user_who_like.id)+"'>\
+                                    <img src='"+str(obj.user_who_like.profile.avatar.url)+"' class='float-left' style='width:40px'>\
                                     <span class='mr-1'>"+str(obj.user_who_like)+"</span>\
                                     Had Liked Your post\
                                     <p class='mt-1'><i class='fas fa-clock mr-1'></i>"+ str(humanize.naturaltime(obj.date)) +"</p>\

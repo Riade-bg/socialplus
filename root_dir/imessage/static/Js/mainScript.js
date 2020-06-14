@@ -3,18 +3,21 @@ var csrftoken = Cookies.get('csrftoken');
 var endpoint = 'ws://' + window.location.host + '/chat/'
 var socket = new WebSocket(endpoint)
 var webSocketBridge
+var reciever_id
 $(document).ready(function() {
+    reciever_id = $('div.msg-head').attr('data-id')
     socket.onmessage = function(e) {
-        if ($('div.msg-head').attr('data-id') == e.data.split("//")[3]) {
+        if (e.data.split("//")[3] == reciever_id) {
             $('div.card div.msg').append(e.data.split("//")[1])
-            $("div.msg").scrollTop($("div.msg")[0].scrollHeight)
         }
+        $("div.msg").scrollTop($("div.msg")[0].scrollHeight)
     }
     socket.onopen = function(e) {}
     socket.onerror = function(e) {}
     socket.onclose = function(e) {}
     getMsges($('.msg-head'))
     $('div.msg-head').click(function(e) {
+        reciever_id = $(this).attr('data-id')
         $("div.container-msges-contacts").children().removeAttr("style")
         getMsges($(this))
     })

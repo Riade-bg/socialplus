@@ -12,6 +12,7 @@
                 $('.fa-dot-circle').css({
                     "display": "block"
                 })
+                $('span.empty').remove()
                 $('div.dropdown-menu').prepend(action.html)
             }
         })

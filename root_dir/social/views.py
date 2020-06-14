@@ -57,8 +57,8 @@ def Like(request):
     if user_.is_authenticated:
         if user_ in obj.likes.all():
             obj.likes.remove(user_)
-            if notification.exists():
-                n = Notifications.objects.get(post = obj)
+            n = Notifications.objects.filter(post__id = obj.id)
+            if n.count() > 0:
                 n.delete()
         else:
             obj.likes.add(user_)
